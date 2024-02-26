@@ -2,8 +2,10 @@
  An advanced dependency service registering logic with Source Generators. Tens of times faster than reflection registrations.
 
  ## Features
- - Source Generators. Easy to debug. No runtime reflection errors.
- - **AOT** compatible. Everything is written in your project and compiled with your assembly according to your target architecture.
+ - **Source Generators**.
+     -  _Easy to debug. No runtime reflection errors._
+ - **AOT** compatible:
+     - _Everything is written in your project and compiled with your assembly according to your target architecture._
  - ...
 
 ## Usage
