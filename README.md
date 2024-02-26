@@ -24,5 +24,16 @@ class MyService
 services.RegisterMyProjectServices();
 ```
 
+### Flexible Customization
+Registrator provides flexible registration options unlike alternatives, you can use multiple service types or lifetime by combining attributes:
+
+```csharp
+[RegisterAsTransient(typeof(IServiceA), typeof(IServiceB))]
+[RegisterAsScoped(typeof(IServiceC))]
+class MyServiceA : IServiceA, IServiceB, IServiceC
+{
+}
+```
+
 ## Work in progress
 This is a simple PoC of source generator service registration. Project will be completed soon...
