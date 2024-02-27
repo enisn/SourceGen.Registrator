@@ -1,5 +1,5 @@
 # SourceGen.Registrator
- An advanced dependency service registering logic with Source Generators. Tens of times faster than reflection registrations.
+ An advanced dependency service registration logic with Source Generators. Tens of times faster than reflection registrations.
 
  ## Features
  - **Source Generators**.
