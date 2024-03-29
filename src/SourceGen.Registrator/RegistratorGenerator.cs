@@ -72,7 +72,7 @@ public class RegistratorGenerator : ISourceGenerator
             {
                 if (serviceName == className)
                 {
-                    builder.AppendLine($"        services.AddSingleton<{serviceName}>((sp) => sp.GetRequiredService<{className}>());");
+                    builder.AppendLine($"        services.AddSingleton<{serviceName}>();");
                 }
                 else
                 {
