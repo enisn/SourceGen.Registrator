@@ -18,22 +18,58 @@ class MyService
 }
 ```
 
-2. Use generated extension method. Method name will be `Register{YourAssemblyName}Services()`
+2. The file will be generated in the same assembly with the name `{YourAssemblyName}Registrator.g.cs` in your root namespace. You can see the generated code by enabling the `Show All Files` option in the Solution Explorer.
 
-```
-services.RegisterMyProjectServices();
-```
+    ![source generator solution preview](assets/generated-file-in-solution-preview.png)
+
+    ```cs
+    using Microsoft.Extensions.DependencyInjection;
+
+    namespace MyServiceConsoleApp;
+    public static class MyServiceConsoleAppRegistrator
+    {
+        public static IServiceCollection RegisterMyServiceConsoleAppServices(this IServiceCollection services)
+        {
+            services.AddTransient<MyService>();
+            return services;
+        }
+    }
+    ```
+
+1.  The source generator will generate an extension method for IServiceCollection. Method name will be `Register{YourAssemblyName}Services()`. Use it on your ServiceCollection instance.
+
+    ```cs
+    services.RegisterMyProjectServices();
+    ```
 
 ### Flexible Customization
 Registrator provides flexible registration options unlike alternatives, you can use multiple service types or lifetime by combining attributes:
 
-```csharp
+```cs
 [RegisterAsTransient(typeof(IServiceA), typeof(IServiceB))]
 [RegisterAsScoped(typeof(IServiceC))]
 class MyServiceA : IServiceA, IServiceB, IServiceC
 {
 }
 ```
+
+- And the generated code will be:
+
+    ```csharp
+    using Microsoft.Extensions.DependencyInjection;
+
+    namespace MyServiceConsoleApp;
+    public static class MyServiceConsoleAppRegistrator
+    {
+        public static IServiceCollection RegisterMyServiceConsoleAppServices(this IServiceCollection services)
+        {
+            services.AddScoped<IServiceC, MyServiceA>();
+            services.AddTransient<IServiceA, MyServiceA>();
+            services.AddTransient<IServiceB, MyServiceA>();
+            return services;
+        }
+    }
+    ```
 
 ## Work in progress
 This is a simple PoC of source generator service registration. Project will be completed soon...
