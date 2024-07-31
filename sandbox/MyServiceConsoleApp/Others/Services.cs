@@ -2,6 +2,21 @@
 
 namespace MyServiceConsoleApp.Others;
 
+public interface IModuleA
+{
+
+}
+
+public class ModuleA : IModuleA, ISingletonDependency
+{
+
+}
+
+public class ExtendedModuleA : ModuleA
+{
+
+}
+
 public interface IHelloService
 {
     void SayHello();
